@@ -412,3 +412,103 @@ main {
   padding: 0.8rem;
   border: none;
 }
+
+/* Подвал PetHome */
+.pethome-footer {
+  margin-top: 3rem;
+  padding: 2.25rem 0 1rem;
+  color: #f7f5ef;
+  background: #212529;
+}
+
+.pethome-footer__main {
+  display: grid;
+  grid-template-columns: 1.25fr 0.8fr 1.25fr;
+  gap: 3rem;
+  padding-bottom: 1.8rem;
+}
+
+.pethome-footer__logo {
+  display: inline-block;
+  margin-bottom: 0.8rem;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.pethome-footer__brand p {
+  max-width: 270px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.55;
+}
+
+.pethome-footer__main h2 {
+  margin: 0 0 0.85rem;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.pethome-footer__nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.55rem;
+}
+
+.pethome-footer__nav h2 {
+  margin-bottom: 0.3rem;
+}
+
+.pethome-footer__nav a,
+.pethome-footer__top {
+  color: #f7f5ef;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.pethome-footer__nav a:hover,
+.pethome-footer__top:hover {
+  color: #ffb3a8;
+}
+
+.pethome-footer__contact p {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin: 0 0 0.7rem;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.45;
+}
+
+.pethome-footer__icon {
+  display: inline-flex;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.pethome-footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.88rem;
+}
+
+.pethome-footer__top {
+  display: inline-block;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 8px;
+  text-decoration: none;
+}
