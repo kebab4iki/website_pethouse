@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Главная — PetHome: поиск животных из приютов</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+
+  <!-- Верхняя инфо-полоса шапки -->
+  <header class="bg-dark text-white py-2">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-12 col-md-8">
+          <small class="opacity-75">Городской портал помощи животным из приютов «PetHome»</small>
+        </div>
+        <div class="col-12 col-md-4 text-md-end mt-1 mt-md-0">
+          <span class="badge bg-warning text-dark">Ищут дом: 142 питомца</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Закрепленное единое меню -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-danger" href="index.html">🐾 PetHome</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Переключить навигацию">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="catalog.html">Каталог животных</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="order.html">Помощь питомцам из приютов</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Навигация по странице
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#about">О проекте</a></li>
+              <li><a class="dropdown-item" href="#popular">Популярные анкеты</a></li>
+              <li><a class="dropdown-item" href="#faq">Частые вопросы (FAQ)</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="d-flex align-items-center gap-2">
+          <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#favoritesModal">
+            Избранное <span class="badge bg-danger" id="favCounter">0</span>
+          </button>
+          <a href="catalog.html" class="btn btn-pethome btn-sm">Найти друга</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero-блок -->
+    <section class="container my-5">
+      <div class="hero-banner">
+        <div class="row align-items-center g-4">
+          <div class="col-12 col-lg-6">
+            <span class="badge bg-success mb-2">Социальный проект</span>
+            <h1 class="display-5 fw-bold mb-3">Подарите дом животному из приюта</h1>
+            <p class="lead text-muted mb-4">
+              На PetHome собраны проверенные анкеты кошек и собак из муниципальных и частных приютов. Изучите характер питомца, запишитесь на знакомство и заберите верного друга домой.
+            </p>
+            <div class="d-flex flex-wrap gap-2">
+              <a class="btn btn-pethome btn-lg" href="catalog.html">Перейти в каталог</a>
+              <a class="btn btn-outline-secondary btn-lg" href="order.html">Помощь питомцам</a>
+            </div>
+          </div>
+          <div class="col-12 col-lg-6">
+            <img src="images/Kiwi1.jpg" alt="Собака Киви из приюта" class="hero-banner__image">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Блок О проекте -->
+    <section class="container my-5" id="about">
+      <h2 class="text-center mb-4">Как работает проект PetHome</h2>
+      <div class="row g-4 mb-4">
+        <div class="col-12 col-md-4">
+          <div class="p-4 border rounded-4 h-100 bg-white shadow-sm">
+            <span class="badge bg-primary mb-2">Шаг 1</span>
+            <h3 class="h5">Честные анкеты</h3>
+            <p class="mb-0 text-muted">
+              Все животные привиты и осмотрены ветеринарами. В каждой анкете указаны возраст, окрас, характер и особенности ухода.
+            </p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="p-4 border rounded-4 h-100 bg-white shadow-sm">
+            <span class="badge bg-success mb-2">Шаг 2</span>
+            <h3 class="h5">Личное знакомство</h3>
+            <p class="mb-0 text-muted">
+              Оставьте заявку на сайте, чтобы погулять с собакой или познакомиться с кошкой в присутствии куратора приюта.
+            </p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="p-4 border rounded-4 h-100 bg-white shadow-sm">
+            <span class="badge bg-warning text-dark mb-2">Шаг 3</span>
+            <h3 class="h5">Поддержка после переезда</h3>
+            <p class="mb-0 text-muted">
+              Волонтеры и зоопсихологи бесплатно консультируют новых хозяев в первые месяцы адаптации питомца дома.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stats-grid__item">
+          <div class="fs-2 fw-bold text-danger">1 240+</div>
+          <div class="text-muted">Питомцев уже нашли дом</div>
+        </div>
+        <div class="stats-grid__item">
+          <div class="fs-2 fw-bold text-success">14</div>
+          <div class="text-muted">Приютов-партнеров</div>
+        </div>
+        <div class="stats-grid__item">
+          <div class="fs-2 fw-bold text-primary">100%</div>
+          <div class="text-muted">Вакцинированы и здоровы</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Популярные анкеты (3 питомца: Глок, Киви, Шампуся) -->
+    <section class="container my-5" id="popular">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h2 class="mb-1">Популярные анкеты животных</h2>
+          <p class="text-muted mb-0">Питомцы, которые больше всего ждут встречи с человеком</p>
+        </div>
+        <a class="btn btn-outline-danger" href="catalog.html">Все питомцы</a>
+      </div>
+
+      <div class="row g-4">
+        <!-- Карточка 1: Глок -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card pet-card h-100">
+            <div class="pet-card__img-wrapper">
+              <button type="button" class="pet-card__fav-btn js-fav-btn" aria-label="В избранное">♡</button>
+              <img src="images/Glok1.jpg" class="pet-card__img" alt="Кот Глок">
+            </div>
+            <div class="card-body d-flex flex-column">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h3 class="h5 card-title mb-0">Глок</h3>
+                <span class="text-muted small">3 года • Мальчик</span>
+              </div>
+              <p class="card-text text-muted">
+                Этот кот с огромными глазами умеет говорить без слов — тихий, теплый и преданный друг, который всегда рядом.
+              </p>
+              <div class="mt-auto d-flex gap-2">
+                <a class="btn btn-pethome flex-grow-1" href="product.html?pet=glok">Подробнее</a>
+                <button
+                  class="btn btn-outline-secondary"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#petQuickModal"
+                  data-pet-name="Глок"
+                  data-pet-age="3 года, мальчик, привит"
+                  data-pet-temp="Общительный, ласковый."
+                  data-pet-shelter="Приют «Зоорассвет» (г. Москва)"
+                  data-pet-img="images/Glok1.jpg"
+                >
+                  Кратко
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Карточка 2: Киви -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card pet-card h-100">
+            <div class="pet-card__img-wrapper">
+              <span class="badge bg-primary pet-card__badge">Новый питомец</span>
+              <button type="button" class="pet-card__fav-btn js-fav-btn" aria-label="В избранное">♡</button>
+              <img src="images/Kiwi1.jpg" class="pet-card__img" alt="Собака Киви">
+            </div>
+            <div class="card-body d-flex flex-column">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h3 class="h5 card-title mb-0">Киви</h3>
+                <span class="text-muted small">2 года • Девочка</span>
+              </div>
+              <p class="card-text text-muted">
+                Настоящая отличница! Понимает все с полуслова, обожает обниматься, отлично гуляет в городе и ездит в машине.
+              </p>
+              <div class="mt-auto d-flex gap-2">
+                <a class="btn btn-pethome flex-grow-1" href="product.html?pet=kiwi">Подробнее</a>
+                <button
+                  class="btn btn-outline-secondary"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#petQuickModal"
+                  data-pet-name="Киви"
+                  data-pet-age="2 года, девочка, привита"
+                  data-pet-temp="Умна и сообразительна."
+                  data-pet-shelter="Приют «Зеленоград» (г. Москва)"
+                  data-pet-img="images/Kiwi1.jpg"
+                >
+                  Кратко
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Карточка 3: Шампуся -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card pet-card h-100">
+            <div class="pet-card__img-wrapper">
+              <span class="badge bg-primary pet-card__badge">Новый питомец</span>
+              <button type="button" class="pet-card__fav-btn js-fav-btn" aria-label="В избранное">♡</button>
+              <img src="images/Shampusya1.jpg" class="pet-card__img" alt="Кошка Шампуся">
+            </div>
+            <div class="card-body d-flex flex-column">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h3 class="h5 card-title mb-0">Шампуся</h3>
+                <span class="text-muted small">2 года • Девочка</span>
+              </div>
+              <p class="card-text text-muted">
+                Дома хорошо, а с кошкой будет веселей! Пушистая красавица Шампуся принесет море искрящейся радости и тепла.
+              </p>
+              <div class="mt-auto d-flex gap-2">
+                <a class="btn btn-pethome flex-grow-1" href="product.html?pet=shampusya">Подробнее</a>
+                <button
+                  class="btn btn-outline-secondary"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#petQuickModal"
+                  data-pet-name="Шампуся"
+                  data-pet-age="2 года, девочка, привита"
+                  data-pet-temp="Добрая."
+                  data-pet-shelter="Приют «Муркоша-Юг» (г. Москва)"
+                  data-pet-img="images/Shampusya1.jpg"
+                >
+                  Кратко
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Раскрывающийся блок FAQ -->
+    <section class="container my-5" id="faq">
+      <h2 class="text-center mb-4">Частые вопросы будущих хозяев (FAQ)</h2>
+      <div class="accordion shadow-sm" id="faqAccordion">
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne" aria-expanded="true" aria-controls="faqOne">
+              Какие документы нужны, чтобы забрать животное из приюта?
+            </button>
+          </h3>
+          <div id="faqOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Потребуется только паспорт для оформления договора ответственного содержания. Животное передается бесплатно вместе с ветеринарным паспортом.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">
+              Можно ли сначала просто приехать и погулять с собакой?
+            </button>
+          </h3>
+          <div id="faqTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Да! Оставьте заявку на странице понравившегося питомца, и куратор встретит вас в приюте, познакомит с хвостиком и расскажет о его привычках.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h3 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree" aria-expanded="false" aria-controls="faqThree">
+              Как помочь приюту, если я пока не могу взять питомца домой?
+            </button>
+          </h3>
+          <div id="faqThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              На странице «Помощь питомцам из приютов» можно собрать корзину адресных подарков (корм, лакомства, средства от паразитов) для конкретного хвостика или помочь всем сразу.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Модальное окно краткой информации -->
+  <div class="modal fade" id="petQuickModal" tabindex="-1" aria-labelledby="petQuickModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title h5" id="petQuickModalLabel">Краткая анкета: <span id="modalPetName">Глок</span></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body">
+          <img id="modalPetImg" src="images/Glok1.jpg" alt="Фото питомца" class="img-fluid rounded mb-3 w-100" style="max-height: 220px; object-fit: cover;">
+          <p class="mb-2"><strong>Возраст и пол:</strong> <span id="modalPetAge"></span></p>
+          <p class="mb-2"><strong>Характер:</strong> <span id="modalPetTemp"></span></p>
+          <p class="mb-0 text-muted"><strong>Где находится:</strong> <span id="modalPetShelter"></span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+          <a href="product.html?pet=glok" class="btn btn-pethome">Перейти на страницу питомца</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" id="scrollTopBtn" class="scroll-top" aria-label="Наверх">↑</button>
+
+  <footer class="bg-dark text-white py-4 mt-5">
+    <div class="container">
+      <p class="mb-0 fw-bold">🐾 PetHome — поиск животных из приютов</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

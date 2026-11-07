@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Каталог животных — PetHome</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+
+  <!-- Закрепленное единое меню -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-danger" href="index.html">🐾 PetHome</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Переключить навигацию">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active fw-semibold" aria-current="page" href="catalog.html">Каталог животных</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="order.html">Помощь питомцам из приютов</a>
+          </li>
+        </ul>
+        <div class="d-flex align-items-center gap-2">
+          <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#favoritesModal">
+            Избранное <span class="badge bg-danger" id="favCounter">0</span>
+          </button>
+          <a href="order.html" class="btn btn-pethome btn-sm">Помощь</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container my-4">
+    <!-- Хлебные крошки -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Главная</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Каталог животных</li>
+      </ol>
+    </nav>
+
+    <div class="alert alert-info" role="alert">
+      Выберите кошку или собаку с помощью фильтров ниже. Вы можете открыть краткую анкету в модальном окне или нажать «Подробнее», чтобы перейти на индивидуальную страницу питомца и записаться на знакомство.
+    </div>
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+      <h1 class="h2 mb-0">Каталог кошек и собак из приютов</h1>
+      <a class="btn btn-outline-primary mt-2 mt-sm-0" href="order.html">Подарить корм питомцам</a>
+    </div>
+
+    <!-- Панель поиска и фильтров -->
+    <form id="catalogFilterForm" class="card p-3 mb-4 shadow-sm border-0">
+      <div class="row g-3 align-items-end">
+        <div class="col-12 col-md-4">
+          <label for="searchInput" class="form-label fw-semibold">Поиск по кличке</label>
+          <input type="text" id="searchInput" class="form-control" placeholder="Например: Глок, Гроза, Киви, Лекси...">
+        </div>
+        <div class="col-6 col-md-2">
+          <label for="filterType" class="form-label fw-semibold">Кто ищет дом</label>
+          <select id="filterType" class="form-select">
+            <option value="all" selected>Все животные</option>
+            <option value="dog">Собаки</option>
+            <option value="cat">Кошки</option>
+          </select>
+        </div>
+        <div class="col-6 col-md-2">
+          <label for="filterAge" class="form-label fw-semibold">Возраст</label>
+          <select id="filterAge" class="form-select">
+            <option value="all" selected>Любой</option>
+            <option value="adult">1–4 года</option>
+            <option value="senior">Старше 4 лет</option>
+          </select>
+        </div>
+        <div class="col-6 col-md-2">
+          <label for="filterGender" class="form-label fw-semibold">Пол</label>
+          <select id="filterGender" class="form-select">
+            <option value="all" selected>Любой</option>
+            <option value="male">Мальчик</option>
+            <option value="female">Девочка</option>
+          </select>
+        </div>
+        <div class="col-6 col-md-2 d-grid">
+          <button type="reset" class="btn btn-outline-secondary">Сбросить</button>
+        </div>
+      </div>
+    </form>
+
+    <div id="noResultsAlert" class="alert alert-warning d-none" role="alert">
+      По выбранным параметрам питомцы не найдены. Попробуйте сбросить фильтры.
+    </div>
+
+    <!-- Сетка карточек 6 животных -->
+    <div class="row g-4">
+      <!-- 1. Глок -->
+      <div class="col-12 col-md-6 col-lg-4 js-pet-item" data-name="Глок" data-type="cat" data-age="adult" data-gender="male">
+        <div class="card pet-card h-100">
+          <div class="pet-card__img-wrapper">
+            <button type="button" class="pet-card__fav-btn js-fav-btn" aria-label="В избранное">♡</button>
+            <img src="images/Glok1.jpg" class="pet-card__img" alt="Кот Глок">
+          </div>
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between mb-2">
+              <h2 class="h5 card-title mb-0">Глок</h2>
+              <span class="badge bg-light text-dark border">Кошка • 3 года</span>
+            </div>
+            <p class="card-text text-muted">Тихий, теплый и преданный полосатый кот с огромными выразительными глазами.</p>
+            <div class="mt-auto d-flex gap-2">
+              <a class="btn btn-pethome flex-grow-1" href="product.html?pet=glok">Подробнее</a>
+              <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#petQuickModal"
+                data-pet-name="Глок" data-pet-age="3 года, мальчик, привит" data-pet-temp="Общительный, ласковый." data-pet-shelter="Приют «Зоорассвет»"
+                data-pet-img="images/Glok1.jpg">Кратко</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Гроза -->
+      <div class="col-12 col-md-6 col-lg-4 js-pet-item" data-name="Гроза" data-type="dog" data-age="adult" data-gender="female">
+        <div class="card pet-card h-100">
+          <div class="pet-card__img-wrapper">
+            <button type="button" class="pet-card__fav-btn js-fav-btn" aria-label="В избранное">♡</button>
+            <img src="images/Groza1.jpg" class="pet-card__img" alt="Собака Гроза">
+          </div>
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between mb-2">
+              <h2 class="h5 card-title mb-0">Гроза</h2>
+              <span class="badge bg-light text-dark border">Собака • 2 года</span>
+            </div>
+            <p class="card-text text-muted">Любопытная, внимательная и ласковая в знакомой обстановке девочка, ищущая чуткого хозяина.</p>
+            <div class="mt-auto d-flex gap-2">
+              <a class="btn btn-pethome flex-grow-1" href="product.html?pet=groza">Подробнее</a>
+              <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#petQuickModal"
+                data-pet-name="Гроза" data-pet-age="2 года, девочка, привита" data-pet-temp="Любопытная, осторожная, внимательная." data-pet-shelter="Приют «Красная сосна»"
+                data-pet-img="images/Groza1.jpg">Кратко</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Киви -->
+      <div class="col-12 col-md-6 col-lg-4 js-pet-item" data-name="Киви" data-type="dog" data-age="adult" data-gender="female">
+        <div class="card pet-card h-100">
+          <div class="pet-card__img-wrapper">
+            <span class="badge bg-primary pet-card__badge">Новый питомец</span>
+            <button type="button" class="pet-card__fav-btn js-fav-btn" aria-label="В избранное">♡</button>
+            <img src="images/Kiwi1.jpg" class="pet-card__img" alt="Собака Киви">
+          </div>
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between mb-2">
+              <h2 class="h5 card-title mb-0">Киви</h2>
+              <span class="badge bg-light text-dark border">Собака • 2 года</span>
+            </div>
+            <p class="card-text text-muted">Настоящая отличница! Понимает все с полуслова, обожает обниматься и гулять в городе.</p>
+            <div class="mt-auto d-flex gap-2">
+              <a class="btn btn-pethome flex-grow-1" href="product.html?pet=kiwi">Подробнее</a>
+              <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#petQuickModal"
+                data-pet-name="Киви" data-pet-age="2 года, девочка, привита" data-pet-temp="Умна и сообразительна." data-pet-shelter="Приют «Зеленоград»"
+                data-pet-img="images/Kiwi1.jpg">Кратко</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Лекси -->
+      <div class="col-12 col-md-6 col-lg-4 js-pet-item" data-name="Лекси" data-type="dog" data-age="senior" data-gender="female">
+        <div class="card pet-card h-100">
+          <div class="pet-card__img-wrapper">
+            <button type="button" class="pet-card__fav-btn js-fav-btn" aria-label="В избранное">♡</button>
+            <img src="images/Leksi1.jpg" class="pet-card__img" alt="Собака Лекси">
+          </div>
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between mb-2">
+              <h2 class="h5 card-title mb-0">Лекси</h2>
+              <span class="badge bg-light text-dark border">Собака • 5 лет</span>
+            </div>
+            <p class="card-text text-muted">Настоящая леди! Нежная, трогательная собака со внутренним стержнем, хорошо ходит на поводке.</p>
+            <div class="mt-auto d-flex gap-2">
+              <a class="btn btn-pethome flex-grow-1" href="product.html?pet=leksi">Подробнее</a>
+              <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#petQuickModal"
+                data-pet-name="Лекси" data-pet-age="5 лет, девочка, привита" data-pet-temp="Нежная, трогательная." data-pet-shelter="Приют «Дубовая Роща»"
+                data-pet-img="images/Leksi1.jpg">Кратко</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Шампуся -->
+      <div class="col-12 col-md-6 col-lg-4 js-pet-item" data-name="Шампуся" data-type="cat" data-age="adult" data-gender="female">
+        <div class="card pet-card h-100">
+          <div class="pet-card__img-wrapper">
+            <span class="badge bg-primary pet-card__badge">Новый питомец</span>
+            <button type="button" class="pet-card__fav-btn js-fav-btn" aria-label="В избранное">♡</button>
+            <img src="images/Shampusya1.jpg" class="pet-card__img" alt="Кошка Шампуся">
+          </div>
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between mb-2">
+              <h2 class="h5 card-title mb-0">Шампуся</h2>
+              <span class="badge bg-light text-dark border">Кошка • 2 года</span>
+            </div>
+            <p class="card-text text-muted">Крупная пушистая красавица, которая принесет в дом море искрящейся радости и улыбок.</p>
+            <div class="mt-auto d-flex gap-2">
+              <a class="btn btn-pethome flex-grow-1" href="product.html?pet=shampusya">Подробнее</a>
+              <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#petQuickModal"
+                data-pet-name="Шампуся" data-pet-age="2 года, девочка, привита" data-pet-temp="Добрая." data-pet-shelter="Приют «Муркоша-Юг»"
+                data-pet-img="images/Shampusya1.jpg">Кратко</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Узвар -->
+      <div class="col-12 col-md-6 col-lg-4 js-pet-item" data-name="Узвар" data-type="cat" data-age="senior" data-gender="male">
+        <div class="card pet-card h-100">
+          <div class="pet-card__img-wrapper">
+            <button type="button" class="pet-card__fav-btn js-fav-btn" aria-label="В избранное">♡</button>
+            <img src="images/Uzvar1.jpg" class="pet-card__img" alt="Кот Узвар">
+          </div>
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between mb-2">
+              <h2 class="h5 card-title mb-0">Узвар</h2>
+              <span class="badge bg-light text-dark border">Кошка • 5 лет</span>
+            </div>
+            <p class="card-text text-muted">Золотошубный рыжий котик с самым сладостным и бесценным мурчанием, снимающим стресс.</p>
+            <div class="mt-auto d-flex gap-2">
+              <a class="btn btn-pethome flex-grow-1" href="product.html?pet=uzvar">Подробнее</a>
+              <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#petQuickModal"
+                data-pet-name="Узвар" data-pet-age="5 лет, мальчик, привит" data-pet-temp="Ласковый, добрый, общительный." data-pet-shelter="Приют «ЗооДом Север»"
+                data-pet-img="images/Uzvar1.jpg">Кратко</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Модальное окно краткой информации -->
+  <div class="modal fade" id="petQuickModal" tabindex="-1" aria-labelledby="petQuickModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title h5" id="petQuickModalLabel">Краткая анкета: <span id="modalPetName"></span></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body">
+          <img id="modalPetImg" src="" alt="Фото питомца" class="img-fluid rounded mb-3 w-100" style="max-height: 220px; object-fit: cover;">
+          <p class="mb-2"><strong>Возраст и пол:</strong> <span id="modalPetAge"></span></p>
+          <p class="mb-2"><strong>Характер:</strong> <span id="modalPetTemp"></span></p>
+          <p class="mb-0 text-muted"><strong>Приют:</strong> <span id="modalPetShelter"></span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+          <a href="product.html?pet=glok" class="btn btn-pethome">Открыть полную анкету</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" id="scrollTopBtn" class="scroll-top" aria-label="Наверх">↑</button>
+
+  <footer class="bg-dark text-white py-4 mt-5">
+    <div class="container">
+      <p class="mb-0 fw-bold">🐾 PetHome — поиск животных из приютов</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

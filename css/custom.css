@@ -1,0 +1,414 @@
+:root {
+  --ph-primary: #e05a47;
+  --ph-primary-hover: #c94634;
+  --ph-secondary: #2d6a4f;
+  --ph-bg-soft: #fdf8f5;
+  --ph-card-radius: 16px;
+  --ph-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #fafafa;
+  color: #212529;
+}
+
+main {
+  flex: 1;
+}
+
+/* Акцентные кнопки */
+.btn-pethome {
+  background-color: var(--ph-primary);
+  border-color: var(--ph-primary);
+  color: #fff;
+}
+
+.btn-pethome:hover,
+.btn-pethome:focus {
+  background-color: var(--ph-primary-hover);
+  border-color: var(--ph-primary-hover);
+  color: #fff;
+}
+
+/* БЭМ: Блок Hero на главной (адаптирован под вертикальное фото Kiwi1.jpg) */
+.hero-banner {
+  background-color: var(--ph-bg-soft);
+  border-radius: var(--ph-card-radius);
+  padding: 2.5rem;
+  box-shadow: var(--ph-shadow);
+}
+
+.hero-banner__image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  object-position: center 25%;
+  border-radius: var(--ph-card-radius);
+  background-color: #f3ede7;
+}
+
+/* БЭМ: Карточка питомца (увеличена высота и фокус поднят к голове животного) */
+.pet-card {
+  border-radius: var(--ph-card-radius);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.pet-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ph-shadow);
+}
+
+.pet-card__img-wrapper {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+  background-color: #f3ede7;
+}
+
+.pet-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+.pet-card__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+}
+
+.pet-card__fav-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.pet-card__fav-btn--active {
+  background: #ffe3e0;
+  color: var(--ph-primary);
+}
+
+/* Главное фото на странице питомца (product.html) — БЕЗ ОБРЕЗКИ (целиком) */
+#mainPetPhoto {
+  width: 100%;
+  height: 440px !important;
+  object-fit: contain !important;
+  background-color: #f5f2ee;
+  border-radius: 12px;
+}
+
+/* Фото в модальном окне "Кратко" — тоже БЕЗ ОБРЕЗКИ */
+#modalPetImg {
+  width: 100%;
+  max-height: 300px !important;
+  object-fit: contain !important;
+  background-color: #f5f2ee;
+  border-radius: 12px;
+}
+
+/* Сетка статистики */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.stats-grid__item {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: var(--ph-card-radius);
+  border: 1px solid #eee;
+  text-align: center;
+}
+
+/* Миниатюры галереи на странице питомца */
+.pet-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 0.75rem;
+}
+
+.pet-gallery-grid__thumb {
+  width: 100%;
+  height: 95px;
+  object-fit: cover;
+  object-position: center 20%;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  background-color: #f5f2ee;
+}
+
+.pet-gallery-grid__thumb:hover {
+  border-color: var(--ph-primary);
+}
+
+/* Кнопка Наверх */
+.scroll-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--ph-primary);
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  z-index: 1050;
+  cursor: pointer;
+}
+
+.scroll-top--visible {
+  display: flex;
+}
+
+/* Баннер и карточки для страницы "Помощь питомцам из приютов" */
+.help-hero {
+  background: linear-gradient(135deg, #1f2229 0%, #2b303a 100%);
+  color: #fff;
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.help-hero__pill {
+  border-radius: 50px;
+  padding: 0.5rem 1.15rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.how-it-works-box {
+  background: #232730;
+  color: #fff;
+  border-radius: 18px;
+  padding: 1.5rem 2rem;
+  margin-top: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.how-it-works-box__item {
+  padding: 0.7rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.96rem;
+}
+
+.how-it-works-box__item:last-child {
+  border-bottom: none;
+}
+
+.wish-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  background-color: #2b303a;
+}
+
+.wish-card__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  transition: transform 0.35s ease;
+}
+
+.wish-card:hover .wish-card__bg {
+  transform: scale(1.04);
+}
+
+.wish-card__overlay {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(
+    to top,
+    rgba(18, 20, 24, 0.96) 0%,
+    rgba(18, 20, 24, 0.78) 60%,
+    rgba(18, 20, 24, 0) 100%
+  );
+  padding: 3.5rem 1.15rem 1.15rem;
+}
+
+.wish-card__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #fff;
+  text-decoration: none;
+  display: block;
+}
+
+.wish-card__title:hover {
+  color: #ff9e92;
+}
+
+.wish-item {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(6px);
+  border-radius: 14px;
+  padding: 0.55rem 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.55rem;
+}
+
+.wish-item:last-child {
+  margin-bottom: 0;
+}
+
+.wish-item__icon-box {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 10px;
+  padding: 0.35rem 0.55rem;
+  text-align: center;
+  min-width: 54px;
+}
+
+.wish-item__emoji {
+  font-size: 1.25rem;
+  line-height: 1;
+  display: block;
+}
+
+.wish-item__counter {
+  font-size: 0.68rem;
+  opacity: 0.85;
+  display: block;
+  margin-top: 2px;
+}
+
+.wish-item__name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  flex: 1;
+  line-height: 1.2;
+}
+
+.wish-item__btn {
+  background-color: #ff6b6b;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: background 0.2s ease;
+}
+
+.wish-item__btn:hover {
+  background-color: #fa5252;
+}
+
+.wish-item__btn--added {
+  background-color: rgba(255, 255, 255, 0.22);
+  color: #d3f9d8;
+}
+
+/* Модальное окно "Помочь всем" */
+.donate-modal-content {
+  background-color: #161922;
+  color: #fff;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.donate-input {
+  background-color: #232734;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-radius: 14px;
+  padding: 0.85rem 1rem;
+}
+
+.donate-input:focus {
+  background-color: #232734;
+  color: #fff;
+  border-color: var(--ph-primary);
+  box-shadow: none;
+}
+
+.donate-input::placeholder {
+  color: #8b92a5;
+}
+
+.donate-chip {
+  background-color: #232734;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.donate-chip:hover {
+  background-color: #313748;
+}
+
+.pay-btn-tpay {
+  background-color: #ffdd2d;
+  color: #000;
+  font-weight: 700;
+  border-radius: 14px;
+  padding: 0.8rem;
+  border: none;
+}
+
+.pay-btn-sbp {
+  background-color: #f4f3ef;
+  color: #111;
+  font-weight: 700;
+  border-radius: 14px;
+  padding: 0.8rem;
+  border: none;
+}
+
+.pay-btn-card {
+  background-color: #2b64e3;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 14px;
+  padding: 0.8rem;
+  border: none;
+}
