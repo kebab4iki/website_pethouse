@@ -24,3 +24,4 @@ kr2-bootstrap-shop/
 │   └── main.js         # База питомцев, генерация анкет, фильтры, избранное, корзина, валидация
 ├── images/             # Фотографии питомцев (Glok, Groza, Kiwi, Leksi, Shampusya, Uzvar)
 ├── README.md           # Описание проекта
+**Ссылка на опубликованный проект (GitHub Pages):** https://kebab4iki.github.io/website_pethouse/
