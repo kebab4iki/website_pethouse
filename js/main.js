@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // База данных всех 6 питомцев с точными характеристиками со скриншотов и локальными фото из папки images/
+  // База данных всех 6 питомцев
   const PETS_DB = {
     glok: {
       id: 'glok',
@@ -18,10 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Уход за шерстью: короткая полосатая шерсть не требует сложного ухода.',
         'Содержание: приучен к лотку и когтеточке, отлично подойдет для уютной квартиры.'
       ],
-      photos: [
-        'images/Glok1.jpg',
-        'images/Glok2.jpg'
-      ]
+      photos: ['images/Glok1.jpg', 'images/Glok2.jpg']
     },
     groza: {
       id: 'groza',
@@ -34,18 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
       temperament: 'Любопытная, осторожная, внимательная',
       shelter: 'Приют «Красная сосна» (г. Москва, ул. Красная Сосна, 30)',
       lead: 'В знакомой обстановке Гроза любопытная, ласковая, игривая и энергичная девочка, которая ищет терпеливого и чуткого человека.',
-      history: 'Гроза в знакомой обстановке может быть любопытной, ласковой, игривой и энергичной, но на улице её часто накрывает паника от новых звуков, пространства и событий. Она не из тех, кто сразу доверяет. Грозе нужен терпеливый, спокойный и чуткий человек, который станет для неё опорой. Ей требуется хозяин с опытом, который не будет торопить события, сможет мягко социализировать её и поможет справляться с тревогой на прогулках. Гроза крепкая и сильная, может тянуть поводок, поэтому важна физическая подготовка и умение управлять крупной собакой.',
+      history: 'Гроза в знакомой обстановке может быть любопытной, ласковой, игривой и энергичная, но на улице её часто накрывает паника от новых звуков, пространства и событий. Она не из тех, кто сразу доверяет. Грозе нужен терпеливый, спокойный и чуткий человек, который станет для неё опорой. Ей требуется хозяин с опытом, который не будет торопить события, сможет мягко социализировать её и поможет справляться с тревогой на прогулках. Гроза крепкая и сильная, может тянуть поводок, поэтому важна физическая подготовка и умение управлять крупной собакой.',
       care: [
         'Характер: любопытная, осторожная, внимательная.',
         'Особенности выгула: крепкая и сильная собака, требует надежной амуниции и спокойных маршрутов.',
         'Рекомендации: подойдет человеку с опытом содержания собак и бережным подходом к адаптации.'
       ],
-      photos: [
-        'images/Groza1.jpg',
-        'images/Groza2.jpg',
-        'images/Groza3.jpg',
-        'images/Groza4.jpg'
-      ]
+      photos: ['images/Groza1.jpg', 'images/Groza2.jpg', 'images/Groza3.jpg', 'images/Groza4.jpg']
     },
     kiwi: {
       id: 'kiwi',
@@ -64,12 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Прогулки и поездки: уверенно чувствует себя в городе и отлично переносит поездки в автомобиле.',
         'Уход: средняя шерсть, регулярное вычесывание и активные прогулки.'
       ],
-      photos: [
-        'images/Kiwi1.jpg',
-        'images/Kiwi2.jpg',
-        'images/Kiwi3.jpg',
-        'images/Kiwi4.jpg'
-      ]
+      photos: ['images/Kiwi1.jpg', 'images/Kiwi2.jpg', 'images/Kiwi3.jpg', 'images/Kiwi4.jpg']
     },
     leksi: {
       id: 'leksi',
@@ -88,12 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Прогулки: хорошо и аккуратно ходит на поводке, любит размеренный темп.',
         'Уход за шерстью: длинная красивая шерсть требует периодического расчесывания.'
       ],
-      photos: [
-        'images/Leksi1.jpg',
-        'images/Leksi2.jpeg',
-        'images/Leksi3.jpg',
-        'images/Leksi4.jpg'
-      ]
+      photos: ['images/Leksi1.jpg', 'images/Leksi2.jpeg', 'images/Leksi3.jpg', 'images/Leksi4.jpg']
     },
     shampusya: {
       id: 'shampusya',
@@ -112,11 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Уход за шерстью: длинная пушистая шерсть, рекомендуется вычесывать 1–2 раза в неделю.',
         'Содержание: приучена к лотку и когтеточке, любит внимание и ласку.'
       ],
-      photos: [
-        'images/Shampusya1.jpg',
-        'images/Shampusya2.jpg',
-        'images/Shampusya3.jpg'
-      ]
+      photos: ['images/Shampusya1.jpg', 'images/Shampusya2.jpg', 'images/Shampusya3.jpg']
     },
     uzvar: {
       id: 'uzvar',
@@ -135,12 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Уход за шерстью: короткая рыжая шерстка, простая в уходе.',
         'Содержание: чистоплотный котик, приучен к лотку и когтеточке.'
       ],
-      photos: [
-        'images/Uzvar1.jpg',
-        'images/Uzvar2.jpg',
-        'images/Uzvar3.jpg',
-        'images/Uzvar4.jpg'
-      ]
+      photos: ['images/Uzvar1.jpg', 'images/Uzvar2.jpg', 'images/Uzvar3.jpg', 'images/Uzvar4.jpg']
     }
   };
 
@@ -193,7 +166,6 @@ document.addEventListener('DOMContentLoaded', () => {
       alertWarningEl.innerHTML = `<strong>Где познакомиться:</strong> ${currentPet.shelter}. Посещение по предварительной заявке.`;
     }
 
-    // Главное фото (всегда с цифрой 1) и генерация миниатюр по порядку номеров (2, 3 или 4 фото)
     mainPetPhoto.src = currentPet.photos[0];
     mainPetPhoto.alt = currentPet.name;
 
@@ -215,7 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Таблица "Информация о питомце"
     const tableRows = document.querySelectorAll('main table tbody tr');
     if (tableRows.length >= 4) {
       tableRows[0].querySelector('th').textContent = 'Вид, пол и возраст';
@@ -245,9 +216,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 1. Кнопка "Наверх"
+  // 1. Плавная кнопка "Наверх" с иконкой лапки
   const scrollTopBtn = document.getElementById('scrollTopBtn');
   if (scrollTopBtn) {
+    scrollTopBtn.innerHTML = `
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <ellipse cx="12" cy="16.5" rx="4.5" ry="3.8"/>
+        <circle cx="6.5" cy="11.5" r="2"/>
+        <circle cx="9.8" cy="8" r="2"/>
+        <circle cx="14.2" cy="8" r="2"/>
+        <circle cx="17.5" cy="11.5" r="2"/>
+      </svg>
+    `;
     window.addEventListener('scroll', () => {
       scrollTopBtn.classList.toggle('scroll-top--visible', window.scrollY > 300);
     });
@@ -258,7 +238,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 2. Избранное
   let favorites = JSON.parse(localStorage.getItem('pethome_favorites') || '[]');
-  // Очищаем старых питомцев из localStorage, если они там оставались
   favorites = favorites.filter((pet) => NAME_TO_KEY[pet.name?.toLowerCase()]);
 
   if (!document.getElementById('favoritesModal')) {
@@ -380,7 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateFavoritesUI();
 
-  // 3. Модальное окно краткой информации ("Кратко")
+  // 3. Модальное окно "Кратко"
   const petModal = document.getElementById('petQuickModal');
   if (petModal) {
     petModal.addEventListener('show.bs.modal', (event) => {
@@ -439,7 +418,7 @@ document.addEventListener('DOMContentLoaded', () => {
     filterForm.addEventListener('reset', () => setTimeout(applyFilters, 10));
   }
 
-  // 5. Страница "Помощь питомцам из приютов" (подарки, корзина, окно "Помочь всем")
+  // 5. Помощь питомцам из приютов (подарки, корзина, окно "Помочь всем")
   const wishButtons = document.querySelectorAll('.js-wish-btn');
   const giftCartBadge = document.getElementById('giftCartBadge');
   const giftCartList = document.getElementById('giftCartList');
@@ -524,7 +503,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Модальное окно "Помочь всем"
   const donateAmountInput = document.getElementById('donateAmountInput');
   document.querySelectorAll('.js-add-amount').forEach((chip) => {
     chip.addEventListener('click', () => {
@@ -573,18 +551,18 @@ document.addEventListener('DOMContentLoaded', () => {
         alertBox.textContent = 'Ошибка: пожалуйста, заполните все обязательные поля (*) и подтвердите согласие.';
       } else {
         alertBox.className = 'alert alert-success mt-3 js-form-alert';
-        alertBox.textContent = 'Заявка успешно отправлена! Куратор приюта свяжется с вами в ближайшее время.';
+        alertBox.textContent = 'Заявка успешно отправлена! Координатор свяжется с вами в ближайшее время.';
         form.reset();
         requiredFields.forEach((f) => f.classList.remove('is-valid'));
       }
     });
   });
-// Автоматическое добавление пунктов "Главная" (рядом с лого) и "О нас" в меню и подвал на всех страницах
+
+  // 7. Синхронизация верхнего меню и подвала (добавление "Главная" и "О нас" везде)
   const navList = document.querySelector('#mainNavbar .navbar-nav');
   if (navList) {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 
-    // 1. Добавляем кнопку "Главная" первым пунктом рядом с лого, если её еще нет
     if (!navList.querySelector('a[href="index.html"]')) {
       const homeLi = document.createElement('li');
       homeLi.className = 'nav-item';
@@ -593,7 +571,6 @@ document.addEventListener('DOMContentLoaded', () => {
       navList.prepend(homeLi);
     }
 
-    // 2. Добавляем ссылку на страницу "О нас" (about.html), если её еще нет
     if (!navList.querySelector('a[href="about.html"]')) {
       const aboutLi = document.createElement('li');
       aboutLi.className = 'nav-item';
@@ -608,50 +585,59 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Направляем ссылку "О нас" в твоем подвале на новую страницу about.html
-  document.querySelectorAll('.site-footer__nav a').forEach((link) => {
-    if (link.textContent.trim() === 'О нас') {
-      link.setAttribute('href', 'about.html');
-    }
-  });
+  // Гарантируем наличие ссылки "О нас" в футере на КАЖДОЙ странице сайта + делаем адрес ссылкой на Яндекс.Карты
+  const footerEl = document.querySelector('footer');
+  if (footerEl) {
+    // Ищем список разделов в футере (поддерживает оба варианта верстки подвала)
+    const footerNavLists = footerEl.querySelectorAll('ul');
+    if (footerNavLists.length > 0) {
+      const sectionsUl = footerNavLists[0];
+      let hasAboutLink = false;
 
-  // Заменяем стрелочку в кнопке "Наверх" на аккуратную белую лапку
-  if (scrollTopBtn) {
-    scrollTopBtn.innerHTML = `
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <ellipse cx="12" cy="16.5" rx="4.5" ry="3.8"/>
-        <circle cx="6.5" cy="11.5" r="2"/>
-        <circle cx="9.8" cy="8" r="2"/>
-        <circle cx="14.2" cy="8" r="2"/>
-        <circle cx="17.5" cy="11.5" r="2"/>
-      </svg>
-    `;
+      sectionsUl.querySelectorAll('a').forEach((a) => {
+        if (a.textContent.trim().toLowerCase() === 'о нас' || a.getAttribute('href') === 'about.html') {
+          a.setAttribute('href', 'about.html');
+          hasAboutLink = true;
+        }
+      });
+
+      if (!hasAboutLink) {
+        const sampleLink = sectionsUl.querySelector('a');
+        const linkClass = sampleLink ? sampleLink.className : 'text-white-50 text-decoration-underline';
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="about.html" class="${linkClass}">О нас</a>`;
+        sectionsUl.appendChild(li);
+      }
+    }
+
+    // Делаем адрес "Москва, проспект Вернадского, 78" в футере кликабельным переходом на Яндекс.Карты
+    footerEl.querySelectorAll('div, span, li').forEach((node) => {
+      if (node.children.length === 0 && node.textContent.includes('проспект Вернадского, 78')) {
+        node.innerHTML = `<a href="https://yandex.ru/maps/?pt=37.480064,55.669986&z=16&l=map" target="_blank" rel="noopener noreferrer" class="text-white-50 text-decoration-underline">Москва, проспект Вернадского, 78 ↗</a>`;
+      }
+    });
   }
 
-  // Плавная анимация отсчета цифр от 0 при первом появлении на экране
+  // 8. Плавная анимация отсчета цифр при первом скролле
   const statCounters = document.querySelectorAll('.js-stat-counter');
   if (statCounters.length > 0) {
     const animateCounter = (el) => {
       const target = parseInt(el.getAttribute('data-target'), 10) || 0;
       const suffix = el.getAttribute('data-suffix') || '';
-      const duration = 1600; // длительность анимации 1.6 сек
+      const duration = 1600;
       const startTime = performance.now();
 
       const step = (now) => {
         const progress = Math.min((now - startTime) / duration, 1);
-        // Плавное замедление в конце (easeOutCubic)
         const eased = 1 - Math.pow(1 - progress, 3);
         const currentVal = Math.floor(eased * target);
-
-        const formatted =
-          target >= 1000 ? currentVal.toLocaleString('ru-RU') : currentVal.toString();
+        const formatted = target >= 1000 ? currentVal.toLocaleString('ru-RU') : currentVal.toString();
         el.textContent = formatted + suffix;
 
         if (progress < 1) {
           requestAnimationFrame(step);
         } else {
-          const finalFormatted =
-            target >= 1000 ? target.toLocaleString('ru-RU') : target.toString();
+          const finalFormatted = target >= 1000 ? target.toLocaleString('ru-RU') : target.toString();
           el.textContent = finalFormatted + suffix;
         }
       };
@@ -664,11 +650,11 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             animateCounter(entry.target);
-            obs.unobserve(entry.target); // срабатывает только при первом просмотре
+            obs.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.4 }
+      { threshold: 0.3 }
     );
 
     statCounters.forEach((counter) => observer.observe(counter));
