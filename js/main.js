@@ -579,4 +579,98 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+// Автоматическое добавление пунктов "Главная" (рядом с лого) и "О нас" в меню и подвал на всех страницах
+  const navList = document.querySelector('#mainNavbar .navbar-nav');
+  if (navList) {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+    // 1. Добавляем кнопку "Главная" первым пунктом рядом с лого, если её еще нет
+    if (!navList.querySelector('a[href="index.html"]')) {
+      const homeLi = document.createElement('li');
+      homeLi.className = 'nav-item';
+      const isHome = currentPage === 'index.html' || currentPage === '';
+      homeLi.innerHTML = `<a class="nav-link ${isHome ? 'active fw-semibold' : ''}" href="index.html">Главная</a>`;
+      navList.prepend(homeLi);
+    }
+
+    // 2. Добавляем ссылку на страницу "О нас" (about.html), если её еще нет
+    if (!navList.querySelector('a[href="about.html"]')) {
+      const aboutLi = document.createElement('li');
+      aboutLi.className = 'nav-item';
+      const isAbout = currentPage === 'about.html';
+      aboutLi.innerHTML = `<a class="nav-link ${isAbout ? 'active fw-semibold' : ''}" href="about.html">О нас</a>`;
+      const dropdownItem = navList.querySelector('.dropdown');
+      if (dropdownItem) {
+        navList.insertBefore(aboutLi, dropdownItem);
+      } else {
+        navList.appendChild(aboutLi);
+      }
+    }
+  }
+
+  // Направляем ссылку "О нас" в твоем подвале на новую страницу about.html
+  document.querySelectorAll('.site-footer__nav a').forEach((link) => {
+    if (link.textContent.trim() === 'О нас') {
+      link.setAttribute('href', 'about.html');
+    }
+  });
+
+  // Заменяем стрелочку в кнопке "Наверх" на аккуратную белую лапку
+  if (scrollTopBtn) {
+    scrollTopBtn.innerHTML = `
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <ellipse cx="12" cy="16.5" rx="4.5" ry="3.8"/>
+        <circle cx="6.5" cy="11.5" r="2"/>
+        <circle cx="9.8" cy="8" r="2"/>
+        <circle cx="14.2" cy="8" r="2"/>
+        <circle cx="17.5" cy="11.5" r="2"/>
+      </svg>
+    `;
+  }
+
+  // Плавная анимация отсчета цифр от 0 при первом появлении на экране
+  const statCounters = document.querySelectorAll('.js-stat-counter');
+  if (statCounters.length > 0) {
+    const animateCounter = (el) => {
+      const target = parseInt(el.getAttribute('data-target'), 10) || 0;
+      const suffix = el.getAttribute('data-suffix') || '';
+      const duration = 1600; // длительность анимации 1.6 сек
+      const startTime = performance.now();
+
+      const step = (now) => {
+        const progress = Math.min((now - startTime) / duration, 1);
+        // Плавное замедление в конце (easeOutCubic)
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const currentVal = Math.floor(eased * target);
+
+        const formatted =
+          target >= 1000 ? currentVal.toLocaleString('ru-RU') : currentVal.toString();
+        el.textContent = formatted + suffix;
+
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          const finalFormatted =
+            target >= 1000 ? target.toLocaleString('ru-RU') : target.toString();
+          el.textContent = finalFormatted + suffix;
+        }
+      };
+
+      requestAnimationFrame(step);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            obs.unobserve(entry.target); // срабатывает только при первом просмотре
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+
+    statCounters.forEach((counter) => observer.observe(counter));
+  }
 });
