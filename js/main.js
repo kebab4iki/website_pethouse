@@ -583,6 +583,14 @@ document.addEventListener('DOMContentLoaded', () => {
         navList.appendChild(aboutLi);
       }
     }
+
+    if (!navList.querySelector('a[href="reviews.html"]')) {
+      const reviewsLi = document.createElement('li');
+      reviewsLi.className = 'nav-item';
+      const isReviews = currentPage === 'reviews.html';
+      reviewsLi.innerHTML = `<a class="nav-link ${isReviews ? 'active fw-semibold' : ''}" href="reviews.html">Отзывы</a>`;
+      navList.appendChild(reviewsLi);
+    }
   }
 
   // Гарантируем наличие ссылки "О нас" в футере на КАЖДОЙ странице сайта + делаем адрес ссылкой на Яндекс.Карты
@@ -659,4 +667,146 @@ document.addEventListener('DOMContentLoaded', () => {
 
     statCounters.forEach((counter) => observer.observe(counter));
   }
+});
+
+/* PetHome: глобальные улучшения интерфейса */
+document.addEventListener('DOMContentLoaded', () => {
+  const html = document.documentElement;
+  const savedTheme = localStorage.getItem('pethome_theme');
+  if (savedTheme === 'dark' || savedTheme === 'light') html.dataset.theme = savedTheme;
+
+  // Переключатель темы в шапке на всех страницах
+  const navActions = document.querySelector('#mainNavbar .d-flex.align-items-center.gap-2');
+  if (navActions && !document.getElementById('themeToggle')) {
+    const themeBtn = document.createElement('button');
+    themeBtn.type = 'button';
+    themeBtn.id = 'themeToggle';
+    themeBtn.className = 'theme-toggle';
+    themeBtn.setAttribute('aria-label', 'Переключить тему');
+    navActions.prepend(themeBtn);
+    const paintThemeButton = () => {
+      const dark = html.dataset.theme === 'dark';
+      themeBtn.innerHTML = `${dark ? '☀️' : '🌙'} <span class="d-none d-xl-inline">${dark ? 'Светлая' : 'Тёмная'}</span>`;
+      themeBtn.title = dark ? 'Включить светлую тему' : 'Включить тёмную тему';
+    };
+    paintThemeButton();
+    themeBtn.addEventListener('click', () => {
+      const next = html.dataset.theme === 'dark' ? 'light' : 'dark';
+      html.dataset.theme = next;
+      localStorage.setItem('pethome_theme', next);
+      paintThemeButton();
+    });
+  }
+
+  // Единственный курсор: системный скрыт CSS, кастомная лапка следует за мышью.
+  if (window.matchMedia('(pointer: fine)').matches) {
+    const cursor = document.createElement('div');
+    cursor.className = 'paw-cursor';
+    cursor.setAttribute('aria-hidden', 'true');
+    cursor.innerHTML = `<svg viewBox="0 0 40 40" fill="currentColor"><ellipse cx="20" cy="25" rx="8.5" ry="7.2"/><ellipse cx="8.5" cy="16" rx="4.1" ry="5.1" transform="rotate(-24 8.5 16)"/><ellipse cx="16.5" cy="9.5" rx="4" ry="5" transform="rotate(-8 16.5 9.5)"/><ellipse cx="25" cy="9.5" rx="4" ry="5" transform="rotate(8 25 9.5)"/><ellipse cx="32" cy="16" rx="4.1" ry="5.1" transform="rotate(24 32 16)"/></svg>`;
+    document.body.appendChild(cursor);
+    window.addEventListener('mousemove', e => {
+      cursor.style.left = `${e.clientX}px`;
+      cursor.style.top = `${e.clientY}px`;
+      cursor.classList.add('is-active');
+    }, { passive: true });
+    window.addEventListener('mousedown', () => cursor.classList.add('is-pressed'));
+    window.addEventListener('mouseup', () => cursor.classList.remove('is-pressed'));
+    window.addEventListener('blur', () => cursor.classList.remove('is-pressed'));
+    document.addEventListener('mouseover', e => {
+      if (e.target.closest('a,button,[role="button"],input,select,textarea,.pet-gallery-grid__thumb')) cursor.classList.add('is-link');
+      else cursor.classList.remove('is-link');
+    });
+  }
+
+  // Помечаем все карточки с переходом на страницу конкретного питомца.
+  document.querySelectorAll('.card, article, .wish-card').forEach(card => {
+    if (card.matches('.pet-card, .wish-card') || card.querySelector('a[href*="product.html"], a[href*="pet="]')) {
+      card.classList.add('animal-profile-card');
+    }
+  });
+
+  // Появление секций и карточек при прокрутке
+  const revealTargets = document.querySelectorAll('main > section, main > .row, main > form, main > .alert, .pet-card, .step-card, .volunteer-card, .wish-card, .stats-grid__item, .review-card');
+  revealTargets.forEach(el => el.classList.add('js-reveal'));
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -35px 0px' });
+    revealTargets.forEach(el => revealObserver.observe(el));
+  } else {
+    revealTargets.forEach(el => el.classList.add('is-visible'));
+  }
+
+  // Небольшой переход между локальными страницами
+  document.querySelectorAll('a[href]').forEach(link => {
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') ||
+        link.target === '_blank' || link.hasAttribute('data-bs-toggle') ||
+        /^(https?:|javascript:)/i.test(href)) return;
+    link.addEventListener('click', event => {
+      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;
+      const url = new URL(href, window.location.href);
+      if (url.origin !== window.location.origin || url.pathname === window.location.pathname && url.search === window.location.search) return;
+      event.preventDefault();
+      document.body.classList.add('page-leaving');
+      window.setTimeout(() => { window.location.href = url.href; }, 180);
+    });
+  });
+
+  // Отзывы: демонстрационные записи + пользовательские отзывы в localStorage.
+  const reviewList = document.getElementById('allReviewsList');
+  if (reviewList) {
+    const starterReviews = [
+      {name:'Анна К.', topic:'Знакомство с питомцем', rating:5, text:'Очень удобно, что в анкете сразу можно узнать характер питомца и особенности ухода. Благодаря этому мы нашли своего хвостатого друга.'},
+      {name:'Максим Р.', topic:'Помощь приюту', rating:5, text:'Понравилось, что можно не только выбрать животное, но и адресно помочь приюту. Всё понятно и без лишних шагов.'},
+      {name:'Екатерина С.', topic:'Выбор питомца', rating:5, text:'Подробные фотографии и описание помогли подготовиться к знакомству. Теперь дома появился новый член семьи.'},
+      {name:'Дмитрий П.', topic:'Каталог животных', rating:5, text:'Удобный каталог, фильтры и понятные анкеты. Смогли быстро подобрать собаку по характеру и размеру.'},
+      {name:'Мария В.', topic:'Усыновление', rating:5, text:'Очень душевный проект. Координаторы ответили на вопросы, а процесс знакомства прошёл спокойно и комфортно.'},
+      {name:'Илья Н.', topic:'Работа сервиса', rating:4, text:'Понравилась идея сервиса и возможность помочь животным даже если пока не готов взять питомца домой.'}
+    ];
+    const stored = () => { try { return JSON.parse(localStorage.getItem('pethome_reviews') || '[]'); } catch (_) { return []; } };
+    const escapeHtml = value => String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+    const renderReviews = () => {
+      const reviews = [...stored(), ...starterReviews];
+      reviewList.innerHTML = reviews.map(r => `<div class="col-12 col-md-6 col-lg-4"><article class="review-card h-100"><div class="review-stars mb-3" aria-label="${r.rating} из 5 звёзд">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div><p class="mb-4">«${escapeHtml(r.text)}»</p><div class="d-flex align-items-center gap-3"><div class="review-avatar">${escapeHtml(r.name.split(/\s+/).map(x=>x[0]).slice(0,2).join('').toUpperCase())}</div><div><strong class="d-block">${escapeHtml(r.name)}</strong><span class="review-note">${escapeHtml(r.topic || 'Отзыв о PetHome')}</span></div></div></article></div>`).join('');
+      const count = document.getElementById('reviewsCount'); if (count) count.textContent = reviews.length;
+    };
+    renderReviews();
+    const form = document.getElementById('reviewForm');
+    if (form) form.addEventListener('submit', event => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      const data = new FormData(form);
+      const entry = {name:data.get('reviewName').trim(), topic:data.get('reviewTopic').trim(), rating:Number(data.get('reviewRating')), text:data.get('reviewText').trim(), createdAt:new Date().toISOString()};
+      const reviews = stored(); reviews.unshift(entry); localStorage.setItem('pethome_reviews', JSON.stringify(reviews));
+      form.reset(); renderReviews();
+      const notice = document.getElementById('reviewNotice');
+      if (notice) { notice.className = 'alert alert-success mt-3'; notice.textContent = 'Спасибо! Ваш отзыв добавлен и отображается в списке.'; }
+    });
+  }
+
+});
+
+// Компактная плавающая шапка появляется после небольшого скролла.
+document.addEventListener('DOMContentLoaded', () => {
+  const nav = document.querySelector('.navbar');
+  if (!nav) return;
+  let ticking = false;
+  const updateNavState = () => {
+    nav.classList.toggle('is-scrolled', window.scrollY > 90);
+    ticking = false;
+  };
+  updateNavState();
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateNavState);
+      ticking = true;
+    }
+  }, { passive: true });
 });

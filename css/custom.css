@@ -575,3 +575,304 @@ main {
   object-fit: cover;
   object-position: center 20%;
 }
+
+
+/* =========================================================
+   PetHome UI update: warm background, themes, motion and paw cursor
+   ========================================================= */
+:root {
+  --ph-page: #fbf7f2;
+  --ph-surface: rgba(255,255,255,.88);
+  --ph-text: #292b2c;
+  --ph-muted: #6c757d;
+  --ph-line: rgba(83,65,52,.12);
+}
+body {
+  color: var(--ph-text);
+  background:
+    radial-gradient(ellipse at 8% 8%, rgba(224,90,71,.075), transparent 32rem),
+    radial-gradient(ellipse at 92% 38%, rgba(45,106,79,.065), transparent 34rem),
+    linear-gradient(135deg, #fbf7f2 0%, #f7f3ee 48%, #fbf8f4 100%);
+  background-attachment: fixed;
+  transition: background-color .35s ease, color .35s ease;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: .20;
+  background-image: radial-gradient(rgba(117,91,73,.16) .7px, transparent .7px);
+  background-size: 19px 19px;
+}
+.navbar {
+  --bs-navbar-color: #514b47;
+  --bs-navbar-hover-color: var(--ph-primary);
+  --bs-navbar-active-color: var(--ph-primary);
+  background: rgba(255,255,255,.91) !important;
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(83,65,52,.10) !important;
+  min-height: 58px;
+  transition: background .3s ease, box-shadow .3s ease;
+}
+.navbar .container { gap: .55rem; max-width: 1240px; }
+.navbar-brand {
+  font-size: 1.16rem; white-space: nowrap;
+  letter-spacing: -.045em;
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+}
+.navbar-brand::after {
+  content: "дом для каждого хвостика";
+  display: block;
+  margin-left: .2rem;
+  padding-left: .7rem;
+  border-left: 1px solid var(--ph-line);
+  color: #9a8d83;
+  font-size: .65rem;
+  letter-spacing: .01em;
+  font-weight: 500;
+}
+.navbar .nav-link {
+  position: relative;
+  margin: 0 .12rem;
+  padding: .48rem .58rem !important; white-space: nowrap; font-size: .91rem;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: color .2s ease, background .2s ease, transform .2s ease;
+}
+.navbar .nav-link:hover { background: rgba(224,90,71,.08); transform: translateY(-1px); }
+.navbar .nav-link.active { background: rgba(224,90,71,.10); }
+.navbar .btn { border-radius: 999px; padding: .42rem .7rem; font-weight: 650; white-space: nowrap; font-size: .86rem; }
+.navbar .navbar-toggler { border-radius: 12px; padding: .3rem .5rem; }
+@media (min-width: 992px) { .navbar .navbar-nav { flex-wrap: nowrap; } .navbar .container { flex-wrap: nowrap; } .navbar-brand::after { font-size: .58rem; padding-left: .48rem; } .navbar .navbar-collapse { min-width: 0; } .navbar .nav-link { margin: 0 .04rem; } }
+.btn, .form-control, .form-select, .card, .alert, .nav-tabs .nav-link {
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.card, .hero-banner, .stats-grid__item, .step-card, .volunteer-card {
+  background-color: var(--ph-surface);
+  border-color: var(--ph-line) !important;
+  backdrop-filter: blur(8px);
+}
+.hero-banner { border: 1px solid var(--ph-line); }
+main > section, main > .row, main > .alert, main > form { position: relative; }
+.js-reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s cubic-bezier(.2,.75,.25,1); }
+.js-reveal.is-visible { opacity: 1; transform: translateY(0); }
+body.page-leaving main { opacity: 0; transform: translateY(8px); }
+main { transition: opacity .22s ease, transform .22s ease; }
+/* На устройствах с мышью системный курсор полностью скрыт: остаётся только лапка */
+@media (pointer: fine) {
+  html, body, body * { cursor: none !important; }
+}
+.paw-cursor {
+  position: fixed; top: 0; left: 0; width: 38px; height: 38px;
+  z-index: 3000; pointer-events: none; transform: translate(-50%,-50%);
+  color: #e05a47; filter: drop-shadow(0 3px 4px rgba(70,40,30,.18));
+  transition: transform .12s ease, color .2s ease;
+  opacity: 0;
+}
+.paw-cursor svg { width: 100%; height: 100%; overflow: visible; }
+.paw-cursor.is-active { opacity: 1; }
+.paw-cursor.is-pressed { transform: translate(-50%,-50%) scale(.78) rotate(-12deg); color: #b93e30; }
+.paw-cursor.is-link { transform: translate(-50%,-50%) scale(1.12); }
+.theme-toggle {
+  display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+  min-width: 42px; min-height: 38px; border: 1px solid var(--ph-line);
+  background: rgba(255,255,255,.65); color: var(--ph-text); border-radius: 999px;
+  padding: .45rem .75rem; font-weight: 650;
+}
+.theme-toggle:hover { border-color: var(--ph-primary); background: rgba(224,90,71,.09); }
+.reviews-section { padding: 2rem 0 1rem; }
+.review-card {
+  height: 100%; padding: 1.5rem; border-radius: 20px;
+  background: var(--ph-surface); border: 1px solid var(--ph-line);
+  box-shadow: 0 10px 30px rgba(62,43,31,.055);
+}
+.review-stars { color: #e6a23c; letter-spacing: .12em; }
+.review-avatar {
+  width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
+  background: rgba(224,90,71,.12); color: var(--ph-primary); font-weight: 800;
+}
+.review-note { color: var(--ph-muted); font-size: .82rem; }
+:focus-visible { outline: 3px solid rgba(224,90,71,.42) !important; outline-offset: 3px; }
+@media (pointer: coarse) {
+  .paw-cursor { display: none; }
+  a, button, input, select, textarea, [role="button"] { cursor: auto; }
+}
+@media (max-width: 991.98px) {
+  .navbar-brand::after { display: none; }
+  .navbar-collapse { padding: .8rem 0 1rem; }
+  .navbar .nav-link { border-radius: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .js-reveal { opacity: 1; transform: none; }
+}
+
+/* Dark theme */
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --ph-page: #17191d;
+  --ph-surface: rgba(35,38,44,.94);
+  --ph-text: #f1eee9;
+  --ph-muted: #b7b1aa;
+  --ph-line: rgba(255,255,255,.10);
+  --ph-bg-soft: #292c32;
+  --ph-shadow: 0 10px 30px rgba(0,0,0,.22);
+}
+html[data-theme="dark"] body {
+  color: var(--ph-text);
+  background:
+    radial-gradient(ellipse at 8% 8%, rgba(224,90,71,.11), transparent 32rem),
+    radial-gradient(ellipse at 92% 38%, rgba(45,106,79,.12), transparent 34rem),
+    linear-gradient(135deg, #17191d 0%, #1d2026 55%, #17191d 100%);
+}
+html[data-theme="dark"] body::before { opacity: .08; }
+html[data-theme="dark"] .navbar {
+  --bs-navbar-color: #e8e2dc; --bs-navbar-hover-color: #ff9d8e; --bs-navbar-active-color: #ff9d8e;
+  background: rgba(30,33,39,.94) !important; border-color: var(--ph-line) !important;
+}
+html[data-theme="dark"] .navbar-brand { color: #ff9d8e !important; }
+html[data-theme="dark"] .navbar-brand::after { color: #aaa19a; border-color: var(--ph-line); }
+html[data-theme="dark"] .navbar-toggler { border-color: var(--ph-line); }
+html[data-theme="dark"] .navbar-toggler-icon { filter: invert(1); }
+html[data-theme="dark"] .theme-toggle { background: #292d34; color: #f1eee9; border-color: var(--ph-line); }
+html[data-theme="dark"] .text-dark, html[data-theme="dark"] .text-body { color: var(--ph-text) !important; }
+html[data-theme="dark"] .text-muted, html[data-theme="dark"] .text-secondary { color: var(--ph-muted) !important; }
+html[data-theme="dark"] .bg-white, html[data-theme="dark"] .card,
+html[data-theme="dark"] .modal-content, html[data-theme="dark"] .dropdown-menu,
+html[data-theme="dark"] .list-group-item, html[data-theme="dark"] .stats-grid__item {
+  background-color: #252930 !important; color: var(--ph-text) !important; border-color: var(--ph-line) !important;
+}
+html[data-theme="dark"] .table { --bs-table-color: var(--ph-text); --bs-table-bg: #252930; --bs-table-striped-bg: #2b3038; --bs-table-border-color: var(--ph-line); }
+html[data-theme="dark"] .form-control, html[data-theme="dark"] .form-select {
+  background-color: #252930; color: var(--ph-text); border-color: var(--ph-line);
+}
+html[data-theme="dark"] .form-control::placeholder { color: #96918b; }
+html[data-theme="dark"] .form-control:focus, html[data-theme="dark"] .form-select:focus {
+  background-color: #252930; color: var(--ph-text);
+}
+html[data-theme="dark"] .breadcrumb, html[data-theme="dark"] .breadcrumb-item.active { color: #c5bdb5; }
+html[data-theme="dark"] .breadcrumb a { color: #ff9d8e; }
+html[data-theme="dark"] .alert-info { background: #263b46; color: #d8edf5; border-color: #365563; }
+html[data-theme="dark"] .alert-warning { background: #453b28; color: #f8e6bd; border-color: #665333; }
+html[data-theme="dark"] .btn-outline-secondary { color: #ddd5cd; border-color: #77716b; }
+html[data-theme="dark"] .btn-outline-secondary:hover { color: #17191d; background: #ddd5cd; }
+html[data-theme="dark"] .pet-gallery-grid__thumb, html[data-theme="dark"] #mainPetPhoto,
+html[data-theme="dark"] #modalPetImg { background-color: #1b1e23; }
+html[data-theme="dark"] .review-card { background: #252930; }
+
+/* Единая выразительная анимация для всех карточек-анкет на сайте */
+.animal-profile-card, .pet-card, .wish-card {
+  transition: transform .32s cubic-bezier(.2,.75,.25,1), box-shadow .32s ease, border-color .32s ease;
+  will-change: transform;
+}
+.animal-profile-card:hover, .pet-card:hover, .wish-card:hover {
+  transform: translateY(-8px) scale(1.012);
+  box-shadow: 0 18px 42px rgba(66,45,32,.16) !important;
+  border-color: rgba(224,90,71,.35) !important;
+}
+.animal-profile-card img, .pet-card img, .wish-card img {
+  transition: transform .55s cubic-bezier(.2,.75,.25,1), filter .35s ease;
+}
+.animal-profile-card:hover img, .pet-card:hover img, .wish-card:hover img { transform: scale(1.055); }
+.animal-profile-card .card-title, .pet-card .card-title { transition: color .25s ease; }
+.animal-profile-card:hover .card-title, .pet-card:hover .card-title { color: var(--ph-primary); }
+.review-form-card { background: var(--ph-surface); border: 1px solid var(--ph-line); border-radius: 22px; padding: clamp(1.2rem, 3vw, 2rem); }
+.review-card { transition: transform .28s ease, box-shadow .28s ease; }
+.review-card:hover { transform: translateY(-5px); box-shadow: 0 16px 34px rgba(62,43,31,.11); }
+@media (max-width: 1199.98px) and (min-width: 992px) { .navbar-brand::after { display: none; } .navbar .nav-link { font-size: .84rem; padding-inline: .42rem !important; } .navbar .btn { padding-inline: .55rem; } }
+
+/* Обновлённая шапка PetHome: широкая в обычном состоянии и компактная при прокрутке */
+.navbar {
+  z-index: 1030;
+  padding-block: .55rem;
+  transition: padding .38s cubic-bezier(.2,.75,.25,1), background .35s ease, box-shadow .35s ease;
+}
+.navbar .container {
+  transition: max-width .42s cubic-bezier(.2,.75,.25,1), padding .35s ease, border-radius .35s ease, box-shadow .35s ease, background .35s ease;
+}
+.navbar-brand {
+  transform-origin: left center;
+  transition: transform .3s ease, color .3s ease, letter-spacing .3s ease;
+}
+.navbar-brand:hover {
+  transform: translateY(-2px) scale(1.045);
+  color: var(--ph-primary) !important;
+  letter-spacing: -.025em;
+}
+.navbar-brand:hover::first-letter {
+  display: inline-block;
+  animation: pethome-paw-wave .62s ease-in-out;
+}
+@keyframes pethome-paw-wave {
+  0%, 100% { transform: rotate(0) scale(1); }
+  25% { transform: rotate(-18deg) scale(1.18); }
+  55% { transform: rotate(12deg) scale(1.12); }
+  78% { transform: rotate(-6deg) scale(1.05); }
+}
+.navbar .nav-link, .navbar .btn, .navbar .theme-toggle {
+  transition: padding .32s ease, font-size .32s ease, transform .25s ease, background .25s ease, box-shadow .25s ease;
+}
+
+/* После прокрутки меню собирается в лёгкую плавающую панель по центру */
+.navbar.is-scrolled {
+  padding: .42rem 0;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none;
+}
+.navbar.is-scrolled .container {
+  width: max-content;
+  max-width: calc(100% - 2rem);
+  min-height: 48px;
+  padding: .28rem .8rem;
+  gap: .45rem;
+  border: 1px solid rgba(120, 94, 75, .16);
+  border-radius: 999px;
+  background: rgba(255, 250, 245, .88);
+  box-shadow: 0 10px 34px rgba(49, 35, 27, .14);
+  backdrop-filter: blur(20px) saturate(1.2);
+  animation: pethome-nav-arrive .42s cubic-bezier(.2,.8,.25,1) both;
+}
+@keyframes pethome-nav-arrive {
+  from { opacity: .72; transform: translateY(-9px) scale(.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.navbar.is-scrolled .navbar-brand {
+  font-size: .98rem;
+  transform: scale(.96);
+}
+.navbar.is-scrolled .navbar-brand::after { display: none; }
+.navbar.is-scrolled .nav-link {
+  font-size: .82rem;
+  padding: .38rem .48rem !important;
+  margin-inline: 0;
+}
+.navbar.is-scrolled .btn {
+  font-size: .78rem;
+  padding: .34rem .58rem;
+}
+html[data-theme="dark"] .navbar.is-scrolled .container {
+  background: rgba(31, 34, 40, .88);
+  border-color: rgba(255,255,255,.12);
+  box-shadow: 0 10px 34px rgba(0,0,0,.3);
+}
+@media (max-width: 991.98px) {
+  .navbar.is-scrolled .container {
+    width: calc(100% - 1.25rem);
+    max-width: none;
+    border-radius: 20px;
+    padding: .35rem .75rem;
+  }
+  .navbar.is-scrolled .navbar-collapse {
+    padding: .7rem .2rem .35rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .navbar, .navbar *, .navbar-brand:hover::first-letter { animation: none !important; transition-duration: .01ms !important; }
+}

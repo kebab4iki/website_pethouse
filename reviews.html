@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Отзывы — PetHome</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+  <header class="bg-dark text-white py-2"><div class="container d-flex justify-content-between align-items-center gap-2"><small class="opacity-75">Городской портал помощи животным из приютов «PetHome»</small><span class="badge bg-warning text-dark">Ищут дом: 142 питомца</span></div></header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-danger" href="index.html">🐾 PetHome</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Переключить навигацию"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="catalog.html">Каталог животных</a></li>
+          <li class="nav-item"><a class="nav-link" href="order.html">Помощь приютам</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">О нас</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2"><a href="catalog.html" class="btn btn-pethome btn-sm">Найти друга</a></div>
+      </div>
+    </div>
+  </nav>
+  <main class="container py-5">
+    <section class="text-center mb-5">
+      <span class="badge rounded-pill text-bg-success mb-2">Истории добрых встреч</span>
+      <h1 class="fw-bold">Отзывы о PetHome</h1>
+      <p class="text-muted">Узнайте, как сервис помогает людям и питомцам находить друг друга.</p>
+      <div class="small text-muted">Всего отзывов: <strong id="reviewsCount">6</strong></div>
+    </section>
+    <section class="row g-4 mb-5" id="allReviewsList" aria-live="polite"></section>
+    <section class="row justify-content-center" id="write-review">
+      <div class="col-12 col-lg-8">
+        <div class="review-form-card">
+          <div class="mb-4"><h2 class="h3 fw-bold mb-2">Оставить отзыв</h2><p class="text-muted mb-0">Расскажите о своём опыте использования PetHome.</p></div>
+          <form id="reviewForm">
+            <div class="row g-3">
+              <div class="col-12 col-md-6"><label class="form-label" for="reviewName">Ваше имя</label><input class="form-control" id="reviewName" name="reviewName" maxlength="40" placeholder="Например, Анна К." required></div>
+              <div class="col-12 col-md-6"><label class="form-label" for="reviewTopic">Тема отзыва</label><input class="form-control" id="reviewTopic" name="reviewTopic" maxlength="60" placeholder="Например, знакомство с питомцем"></div>
+              <div class="col-12 col-md-6"><label class="form-label" for="reviewRating">Оценка</label><select class="form-select" id="reviewRating" name="reviewRating" required><option value="5" selected>★★★★★ — Отлично</option><option value="4">★★★★☆ — Хорошо</option><option value="3">★★★☆☆ — Нормально</option><option value="2">★★☆☆☆ — Плохо</option><option value="1">★☆☆☆☆ — Очень плохо</option></select></div>
+              <div class="col-12"><label class="form-label" for="reviewText">Текст отзыва</label><textarea class="form-control" id="reviewText" name="reviewText" rows="4" minlength="10" maxlength="700" placeholder="Поделитесь впечатлениями..." required></textarea><div class="form-text">От 10 до 700 символов.</div></div>
+              <div class="col-12"><button class="btn btn-pethome" type="submit">Опубликовать отзыв</button></div>
+            </div>
+          </form>
+          <div id="reviewNotice" role="status" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="bg-dark text-white pt-4 pb-4 mt-5"><div class="container d-flex flex-wrap justify-content-between align-items-center gap-3"><a href="index.html" class="text-white text-decoration-none fw-bold">🐾 PetHome</a><span class="text-white-50 small">Сайт помощи животным из приютов</span><a href="index.html" class="text-white-50">На главную</a></div></footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
